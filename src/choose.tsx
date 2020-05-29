@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React, { Component } from 'react';
 
 export default class Choose extends Component<any> {
   constructor(props) {
@@ -8,21 +7,27 @@ export default class Choose extends Component<any> {
 
   state = {
     category: '17',
-    difficulty: 'easy'
+    difficulty: 'easy',
   };
 
   play = () => {
     this.props.play(+this.state.category, this.state.difficulty);
-  }
+  };
 
   render() {
     return (
       <div>
         <div className="field">
-          <label className="label" htmlFor="category">Category</label>
+          <label className="label" htmlFor="category">
+            Category
+          </label>
           <div className="control">
             <div className="select">
-              <select id="category" onChange={e => this.setState({ category: e.target.value })} value={this.state.category}>
+              <select
+                id="category"
+                onChange={(e) => this.setState({ category: (e.target as any).value })}
+                value={this.state.category}
+              >
                 <option value="17">Science &amp; Nature</option>
                 <option value="18">Science: Computers</option>
                 <option value="22">Geography</option>
@@ -35,10 +40,16 @@ export default class Choose extends Component<any> {
           </div>
         </div>
         <div className="field">
-          <label className="label" htmlFor="difficulty">Difficulty</label>
+          <label className="label" htmlFor="difficulty">
+            Difficulty
+          </label>
           <div className="control">
             <div className="select">
-              <select name="difficulty" onChange={e => this.setState({ difficulty: e.target.value })} value={this.state.difficulty}>
+              <select
+                name="difficulty"
+                onChange={(e) => this.setState({ difficulty: (e.target as any).value })}
+                value={this.state.difficulty}
+              >
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
@@ -48,7 +59,9 @@ export default class Choose extends Component<any> {
         </div>
         <div className="field">
           <div className="control">
-            <button className="button is-link" onClick={this.play}>Play</button>
+            <button className="button is-link" onClick={this.play}>
+              Play
+            </button>
           </div>
         </div>
       </div>

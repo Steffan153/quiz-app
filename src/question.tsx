@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
-import "./question.css";
+import React, { Component } from 'react';
+import './question.css';
 
 export default class Quiz extends Component<any> {
   constructor(props) {
@@ -8,20 +7,20 @@ export default class Quiz extends Component<any> {
   }
   state = {
     answered: false,
-    correct: this.props.question[1].findIndex(x => x.correct),
+    correct: this.props.question[1].findIndex((x) => x.correct),
     ua: null,
     isCorrect: null,
-    next: false
+    next: false,
   };
 
   static getDerivedStateFromProps(pp, ps) {
     if (ps.next)
       return {
         answered: false,
-        correct: pp.question[1].findIndex(x => x.correct),
+        correct: pp.question[1].findIndex((x) => x.correct),
         ua: null,
         isCorrect: null,
-        next: false
+        next: false,
       };
     return ps;
   }
@@ -31,7 +30,7 @@ export default class Quiz extends Component<any> {
     this.setState((p: any) => ({
       answered: true,
       ua: i,
-      isCorrect: i === p.correct
+      isCorrect: i === p.correct,
     }));
   };
 
@@ -45,23 +44,21 @@ export default class Quiz extends Component<any> {
       <div className="has-background-light question">
         <div
           className="has-text-weight-bold is-size-4"
-          style={{ marginBottom: "10px" }}
+          style={{ marginBottom: '10px' }}
           dangerouslySetInnerHTML={{ __html: this.props.question[0] }}
         />
-        <div className="columns" style={{ width: "100%" }}>
+        <div className="columns" style={{ width: '100%' }}>
           {this.props.question[1].map((x, i) => (
             <div className="column is-half" key={i}>
               <button
                 className={
-                  "button ans" +
+                  'button ans' +
                   (this.state.answered
                     ? this.state.correct === i
-                      ? " has-text-success"
-                      : " has-text-danger"
-                    : "") +
-                  (this.state.ua === i
-                    ? " is-active is-focused is-hovered"
-                    : "")
+                      ? ' has-text-success'
+                      : ' has-text-danger'
+                    : '') +
+                  (this.state.ua === i ? ' is-active is-focused is-hovered' : '')
                 }
                 onClick={() => this.onClick(x, i)}
                 dangerouslySetInnerHTML={{ __html: x.a }}
@@ -70,13 +67,8 @@ export default class Quiz extends Component<any> {
           ))}
         </div>
         {this.state.answered && (
-          <div
-            className={
-              (this.state.isCorrect ? "has-text-success" : "has-text-danger") +
-              " is-size-5"
-            }
-          >
-            {this.state.isCorrect ? "Correct!" : "Wrong. :("}
+          <div className={(this.state.isCorrect ? 'has-text-success' : 'has-text-danger') + ' is-size-5'}>
+            {this.state.isCorrect ? 'Correct!' : 'Wrong. :('}
           </div>
         )}
         {this.state.answered && !this.props.isEnd && (
