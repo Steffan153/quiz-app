@@ -1,0 +1,21 @@
+.question {
+  padding: 30px 40px;
+  border-radius: 10px;
+  width: 75%;
+}
+
+@media (min-width: 1400px) {
+  .question {
+    width: 55%;
+  }
+}
+
+.question .columns {
+  flex-flow: row wrap;
+}
+
+.ans {
+  width: 100%;
+  white-space: normal;
+  height: auto;
+}
