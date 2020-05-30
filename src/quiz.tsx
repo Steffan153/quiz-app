@@ -53,15 +53,21 @@ export default class Quiz extends Component<any> {
     return array;
   }
 
-  onNext = (ic) => {
+  onNext = ic => {
+    if (this.state.i > 9)
+      return this.setState((p: any) => ({
+        isEnd: true,
+        correct: p.correct + ic,
+        wrong: p.wrong + !ic
+      }));
     this.setState((p: any) => ({
       question: this.formatQuestion(p.results[p.i]),
       i: p.i + 1,
-      isEnd: p.i === 9,
+      // isEnd: p.i > 9,
       correct: p.correct + ic,
       wrong: p.wrong + !ic
     }));
-  }
+  };
 
   render() {
     return (
@@ -70,10 +76,15 @@ export default class Quiz extends Component<any> {
           "Loading..."
         ) : this.state.isEnd ? (
           <div className="is-size-4">
-            Game ended. You got {this.state.correct} correct and {this.state.wrong} wrong.
+            Game ended. You got {this.state.correct} correct and{" "}
+            {this.state.wrong} wrong.
           </div>
         ) : (
-          <Question question={this.state.question} isEnd={this.state.isEnd} onNext={this.onNext} />
+          <Question
+            question={this.state.question}
+            isEnd={this.state.isEnd}
+            onNext={this.onNext}
+          />
         )}
       </div>
     );
